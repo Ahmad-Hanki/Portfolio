@@ -1,8 +1,9 @@
+import Form from "@/components/Form";
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { RegisterLink } from "@kinde-oss/kinde-auth-nextjs/components";
+import { LogoutLink, RegisterLink } from "@kinde-oss/kinde-auth-nextjs/components";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import React from "react";
 
@@ -12,9 +13,7 @@ async function GuestBookForm() {
 
   if (user) {
     return (
-      <div>
-        <h1>Hello</h1>
-      </div>
+      <Form />
     );
   }
 
@@ -39,6 +38,7 @@ const GuestBookPage = () => {
           <Label className="mb-1">Message</Label>
           <GuestBookForm />
         </CardHeader>
+
       </Card>
     </section>
   );
