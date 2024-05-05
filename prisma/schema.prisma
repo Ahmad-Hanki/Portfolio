@@ -19,7 +19,7 @@ model User {
 
 model GuestBookEntry {
   id        String   @id @default(uuid())
-  message   String
+  message   String @db.VarChar(5000)
   createdAt DateTime @default(now())
 
   userId String

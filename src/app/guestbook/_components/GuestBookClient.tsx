@@ -5,10 +5,14 @@ import Loading from "@/components/ui/Loading";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import TimeAgo from "@/lib/TimeAgo";
 import { Suspense, useState } from "react";
+import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
+import PhoneMenu from "./PhoneMenu";
+import Menu from "./Menu";
 
 type GuestBookClientProps = {
   data: {
     id: string;
+    userId: string;
     message: string;
     User: {
       firstname: string;
@@ -24,16 +28,17 @@ const GuestBookClient = ({ data }: GuestBookClientProps) => {
   const lastItemIndex = currentPage * itemsPerPage;
   const firstItemIndex = lastItemIndex - itemsPerPage;
 
+  const { user } = useKindeBrowserClient();
   const currentItems = data.slice(firstItemIndex, lastItemIndex);
+  
 
   return (
     <div>
       <ul className="pt-7 gap-y-5 flex flex-col ">
-        
-
-          {currentItems.map((item, i) => {
-            return (
-              <li key={item.id}>
+        {currentItems.map((item, i) => {
+          return (
+            <li key={item.id}>
+              <div className="flex justify-between items-center">
                 <div className="flex items-center">
                   <Avatar className="rounded-lg">
                     <AvatarImage
@@ -56,9 +61,29 @@ const GuestBookClient = ({ data }: GuestBookClientProps) => {
                     </p>
                   </div>
                 </div>
-              </li>
-            );
-          })}
+
+                {user && (
+                  <>
+                    <div className="lg:hidden">
+                      <PhoneMenu
+                        messageId={item.id}
+                        userId={item.userId}
+                        currentUser={user?.id}
+                      />
+                    </div>
+                    <div className="hidden lg:block">
+                      <Menu
+                        messageId={item.id}
+                        userId={item.userId}
+                        currentUser={user?.id}
+                      />
+                    </div>
+                  </>
+                )}
+              </div>
+            </li>
+          );
+        })}
       </ul>
 
       <PaginationSection

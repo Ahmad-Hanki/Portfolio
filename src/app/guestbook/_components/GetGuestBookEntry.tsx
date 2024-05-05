@@ -13,6 +13,7 @@ const GetGuestBookEntry = async () => {
       },
       message: true,
       id: true,
+      userId:true,
       createdAt: true,
     },
     orderBy: {

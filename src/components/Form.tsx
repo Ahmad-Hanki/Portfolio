@@ -1,28 +1,10 @@
 "use client";
-import { useFormStatus } from "react-dom";
 import { Input } from "./ui/input";
-import { Button } from "./ui/button";
-import { Loader2 } from "lucide-react";
+
 import toast from "react-hot-toast";
-import postData from "@/actions/postData";
+import postData from "@/actions/postMessage";
 import { useRef } from "react";
-
-function SubmitButton() {
-  const { pending } = useFormStatus();
-
-  return (
-    <>
-      {pending && (
-        <Button disabled>
-          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-          Please Wait
-        </Button>
-      )}
-
-      {!pending && <Button type="submit">Submit</Button>}
-    </>
-  );
-}
+import { SubmitButton } from "./SubmitButton";
 
 const Form = () => {
   const formRef = useRef<HTMLFormElement>(null);
@@ -54,7 +36,7 @@ const Form = () => {
         placeholder="Your Message.."
         required
       />
-      <SubmitButton />
+      <SubmitButton submit="Submit" submitting="Please Wait" />
     </form>
   );
 };
