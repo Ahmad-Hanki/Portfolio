@@ -1,9 +1,10 @@
+
 import { Card, CardHeader } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { GuestBookForm } from "./page";
 import LoadingSkeleton from "./_components/LoadingSkeleton";
 
-const loading = () => {
+const GuestBookLoading = () => {
   return (
     <div>
       <section className="max-w-7xl w-full px-4 md:px-8 mx-auto">
@@ -26,4 +27,4 @@ const loading = () => {
   );
 };
 
-export default loading;
+export default GuestBookLoading;

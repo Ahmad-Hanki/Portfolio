@@ -1,10 +1,9 @@
 "use client";
 
 import { PaginationSection } from "@/components/paginationSection";
-import Loading from "@/components/ui/Loading";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import TimeAgo from "@/lib/TimeAgo";
-import { Suspense, useState } from "react";
+import { useEffect, useState } from "react";
 import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 import PhoneMenu from "./PhoneMenu";
 import Menu from "./Menu";
@@ -23,19 +22,31 @@ type GuestBookClientProps = {
 };
 
 const GuestBookClient = ({ data }: GuestBookClientProps) => {
+  const [isMounted, setIsMounted] = useState(false);
+
   const [currentPage, setCurrentPage] = useState(1); // default
   const [itemsPerPage, setItemsPerPage] = useState(20);
   const lastItemIndex = currentPage * itemsPerPage;
   const firstItemIndex = lastItemIndex - itemsPerPage;
 
-  const { user } = useKindeBrowserClient();
+  const { getUser } = useKindeBrowserClient();
+  const user = getUser();
   const currentItems = data.slice(firstItemIndex, lastItemIndex);
-  
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) {
+    return null;
+  }
 
   return (
     <div>
       <ul className="pt-7 gap-y-5 flex flex-col ">
         {currentItems.map((item, i) => {
+          const reporterOrHidden = localStorage.getItem(item.id) || undefined;
+          if (reporterOrHidden == "true") return null;
           return (
             <li key={item.id}>
               <div className="flex justify-between items-center">
@@ -69,6 +80,7 @@ const GuestBookClient = ({ data }: GuestBookClientProps) => {
                         messageId={item.id}
                         userId={item.userId}
                         currentUser={user?.id}
+                        email={user.email ?? ''}
                       />
                     </div>
                     <div className="hidden lg:block">
@@ -76,6 +88,7 @@ const GuestBookClient = ({ data }: GuestBookClientProps) => {
                         messageId={item.id}
                         userId={item.userId}
                         currentUser={user?.id}
+                        email={user.email ?? ''}
                       />
                     </div>
                   </>

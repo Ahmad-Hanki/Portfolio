@@ -24,7 +24,7 @@ const Navbar = () => {
   
   return (
     <nav className="max-w-7xl mx-auto px-4 md:px-8 py-5 grid grid-cols-12">
-      <div className="col-span-6 md:col-span-3">
+      <div className="col-span-7 md:col-span-3">
         <Link href={"/"}>
           <h1 className="text-3xl font-semibold">
             Ahmad <span className="text-blue-500 ">Hanki</span>
@@ -32,7 +32,7 @@ const Navbar = () => {
         </Link>
       </div>
 
-      <div className="hidden sm:flex justify-center items-center col-span-6">
+      <div className="hidden sm:flex justify-center items-center col-span-5">
         <NavigationMenu>
           <NavigationMenuList>
             {navigationItems.map((item, i) => (
@@ -47,7 +47,7 @@ const Navbar = () => {
           </NavigationMenuList>
         </NavigationMenu>
       </div>
-      <div className="flex items-center justify-end md:col-span-3 col-span-6">
+      <div className="flex items-center justify-end md:col-span-3 col-span-5">
         <Button className="hidden md:block">
             Contact Me
         </Button>
