@@ -48,7 +48,7 @@ const Navbar = () => {
         </NavigationMenu>
       </div>
       <div className="flex items-center justify-end md:col-span-3 col-span-6">
-        <Button className="hidden sm:block">
+        <Button className="hidden md:block">
             Contact Me
         </Button>
         <div className="sm:hidden">

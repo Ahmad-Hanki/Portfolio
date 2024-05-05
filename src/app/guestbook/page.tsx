@@ -3,18 +3,17 @@ import { Button } from "@/components/ui/button";
 import { Card, CardHeader } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { LogoutLink, RegisterLink } from "@kinde-oss/kinde-auth-nextjs/components";
+import { RegisterLink } from "@kinde-oss/kinde-auth-nextjs/components";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
-import React from "react";
+import GetGuestBookEntry from "./_components/GetGuestBookEntry";
+import Loading from "@/components/ui/Loading";
 
-async function GuestBookForm() {
-    const {getUser}= getKindeServerSession();
-    const user = await getUser();
+export async function GuestBookForm() {
+  const { getUser } = getKindeServerSession();
+  const user = await getUser();
 
   if (user) {
-    return (
-      <Form />
-    );
+    return <Form />;
   }
 
   return (
@@ -36,12 +35,16 @@ const GuestBookPage = () => {
       <Card className="mt-10">
         <CardHeader className="flex flex-col w-full">
           <Label className="mb-1">Message</Label>
-          <GuestBookForm />
-        </CardHeader>
 
+          <GuestBookForm />
+
+          <GetGuestBookEntry />
+        </CardHeader>
       </Card>
     </section>
   );
 };
 
 export default GuestBookPage;
+
+export const revalidate = 3600;
