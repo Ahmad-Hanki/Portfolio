@@ -6,14 +6,15 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 export function ReportRadioButton({ setData }: { setData: any }) {
   const [selectedValue, setSelectedValue] = useState<string>("");
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSelectedValue(e.target.value);
-    setData(e.target.value);
+  const handleChange = (value: string) => {
+    setSelectedValue(value);
+    setData(value);
     console.log(selectedValue);
   };
 
+
   return (
-    <RadioGroup defaultValue={selectedValue} onChange={handleChange}>
+    <RadioGroup defaultValue={selectedValue} onValueChange={handleChange}>
       <div className="flex flex-col gap-3 justify-center">
         <div className="flex items-center space-x-2">
           <RadioGroupItem value="hate" id="r1" />

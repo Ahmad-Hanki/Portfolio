@@ -21,11 +21,13 @@ const GetGuestBookEntry = async () => {
       createdAt: "desc",
     },
   });
-  await prisma.$disconnect();
+  // await prisma.$disconnect();
 
   if (data.length == 0) return null;
 
-  return <GuestBookClient data={data} user={user} />;
+  return (
+      <GuestBookClient data={data} user={user} />
+  );
 };
 
 export default GetGuestBookEntry;

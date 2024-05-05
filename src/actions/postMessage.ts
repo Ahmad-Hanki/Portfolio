@@ -22,7 +22,7 @@ const postMessage = async (formData: FormData) => {
         message,
       },
     });
-    await prisma.$disconnect();
+    // await prisma.$disconnect();
 
     revalidatePath("/guestbook");
     return 1;
@@ -30,7 +30,7 @@ const postMessage = async (formData: FormData) => {
     console.log(err);
     return 0;
   } finally {
-    await prisma.$disconnect();
+    // await prisma.$disconnect();
   }
 };
 

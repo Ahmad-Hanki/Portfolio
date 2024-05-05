@@ -3,6 +3,8 @@ import { Label } from "@/components/ui/label";
 import React, { Suspense } from "react";
 import GetGuestBookEntry from "./_components/GetGuestBookEntry";
 import { GuestBookForm } from "./_components/GetGuestBookForm";
+import GuestBookLoading from "./_components/DataLoading";
+import FormLoading from "./_components/FormLoading";
 
 const GuestBookPage = () => {
   return (
@@ -13,10 +15,14 @@ const GuestBookPage = () => {
       <Card className="mt-10">
         <CardHeader className="flex flex-col w-full">
           <Label className="mb-1">Message</Label>
+          
+          <Suspense fallback={<FormLoading />}>
+            <GuestBookForm />
+          </Suspense>
 
-          <GuestBookForm />
-
-          <GetGuestBookEntry />
+          <Suspense fallback={<GuestBookLoading />}>
+            <GetGuestBookEntry />
+          </Suspense>
         </CardHeader>
       </Card>
     </section>

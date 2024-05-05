@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import PhoneMenu from "./PhoneMenu";
 import Menu from "./Menu";
 import { KindeUser } from "@kinde-oss/kinde-auth-nextjs/types";
+import GuestBookLoading from "./DataLoading";
 
 type GuestBookClientProps = {
   data: {
@@ -37,7 +38,7 @@ const GuestBookClient = ({ data, user }: GuestBookClientProps) => {
   }, []);
 
   if (!isMounted) {
-    return null;
+    return <GuestBookLoading/>;
   }
 
   return (

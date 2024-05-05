@@ -7,7 +7,7 @@ export async function GET() {
   const user = await getUser();
 
   if (!user || user == null || !user.id) {
-    throw new Error("Something went wrong...");
+    return NextResponse.json({ message: "Not Authorized" }, { status: 500 });
   }
 
   let dbUser = await prisma.user.findUnique({
@@ -15,7 +15,7 @@ export async function GET() {
       id: user.id,
     },
   });
-  await prisma.$disconnect();
+//   await prisma.$disconnect();
 
   if (!dbUser) {
     dbUser = await prisma.user.create({
@@ -28,7 +28,7 @@ export async function GET() {
       },
     });
   }
-  await prisma.$disconnect();
+//   await prisma.$disconnect();
 
   return NextResponse.redirect("http://localhost:3000/guestbook");
 }
