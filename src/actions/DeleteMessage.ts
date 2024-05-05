@@ -24,12 +24,14 @@ const DeleteMessage = async (
           userId: currentUserId,
         },
       });
+      await prisma.$disconnect();
     } else {
       await prisma.guestBookEntry.delete({
         where: {
           id: messageId,
         },
       });
+      await prisma.$disconnect();
     }
 
     revalidatePath("/guestbook");
@@ -37,6 +39,8 @@ const DeleteMessage = async (
   } catch (err) {
     console.log(err);
     return 0;
+  } finally {
+    await prisma.$disconnect();
   }
 };
 

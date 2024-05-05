@@ -4,9 +4,9 @@ import { PaginationSection } from "@/components/paginationSection";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import TimeAgo from "@/lib/TimeAgo";
 import { useEffect, useState } from "react";
-import { useKindeBrowserClient } from "@kinde-oss/kinde-auth-nextjs";
 import PhoneMenu from "./PhoneMenu";
 import Menu from "./Menu";
+import { KindeUser } from "@kinde-oss/kinde-auth-nextjs/types";
 
 type GuestBookClientProps = {
   data: {
@@ -19,9 +19,10 @@ type GuestBookClientProps = {
     };
     createdAt: Date;
   }[];
+  user: KindeUser | null;
 };
 
-const GuestBookClient = ({ data }: GuestBookClientProps) => {
+const GuestBookClient = ({ data, user }: GuestBookClientProps) => {
   const [isMounted, setIsMounted] = useState(false);
 
   const [currentPage, setCurrentPage] = useState(1); // default
@@ -29,8 +30,6 @@ const GuestBookClient = ({ data }: GuestBookClientProps) => {
   const lastItemIndex = currentPage * itemsPerPage;
   const firstItemIndex = lastItemIndex - itemsPerPage;
 
-  const { getUser } = useKindeBrowserClient();
-  const user = getUser();
   const currentItems = data.slice(firstItemIndex, lastItemIndex);
 
   useEffect(() => {
@@ -80,7 +79,7 @@ const GuestBookClient = ({ data }: GuestBookClientProps) => {
                         messageId={item.id}
                         userId={item.userId}
                         currentUser={user?.id}
-                        email={user.email ?? ''}
+                        email={user.email ?? ""}
                       />
                     </div>
                     <div className="hidden lg:block">
@@ -88,7 +87,7 @@ const GuestBookClient = ({ data }: GuestBookClientProps) => {
                         messageId={item.id}
                         userId={item.userId}
                         currentUser={user?.id}
-                        email={user.email ?? ''}
+                        email={user.email ?? ""}
                       />
                     </div>
                   </>

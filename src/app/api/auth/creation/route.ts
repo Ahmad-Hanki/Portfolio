@@ -15,6 +15,8 @@ export async function GET() {
       id: user.id,
     },
   });
+  await prisma.$disconnect();
+
   if (!dbUser) {
     dbUser = await prisma.user.create({
       data: {
@@ -26,5 +28,7 @@ export async function GET() {
       },
     });
   }
+  await prisma.$disconnect();
+
   return NextResponse.redirect("http://localhost:3000/guestbook");
 }

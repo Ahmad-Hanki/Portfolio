@@ -1,30 +1,8 @@
-import Form from "@/components/Form";
-import { Button } from "@/components/ui/button";
 import { Card, CardHeader } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { RegisterLink } from "@kinde-oss/kinde-auth-nextjs/components";
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import React, { Suspense } from "react";
 import GetGuestBookEntry from "./_components/GetGuestBookEntry";
-import Loading from "@/components/ui/Loading";
-
-export async function GuestBookForm() {
-  const { getUser } = getKindeServerSession();
-  const user = await getUser();
-
-  if (user) {
-    return <Form />;
-  }
-
-  return (
-    <div className="flex justify-between gap-4 flex-col md:flex-row">
-      <Input type="text" placeholder="Your Message..." />
-      <RegisterLink>
-        <Button>Sign For Free</Button>
-      </RegisterLink>
-    </div>
-  );
-}
+import { GuestBookForm } from "./_components/GetGuestBookForm";
 
 const GuestBookPage = () => {
   return (

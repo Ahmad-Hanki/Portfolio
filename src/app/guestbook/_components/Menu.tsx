@@ -67,7 +67,7 @@ const Menu = ({ messageId, userId, currentUser, email }: messageData) => {
             {currentUser == userId && (
               <DropdownMenuItem>
                 <Button
-                  className="flex gap-3 w-fit font-extrabold"
+                  className="flex gap-3 w-full font-extrabold"
                   variant={"ghost"}
                   onClick={() => {
                     setDialogOpen(true);
@@ -82,7 +82,7 @@ const Menu = ({ messageId, userId, currentUser, email }: messageData) => {
             {currentUser != userId && admin && (
               <DropdownMenuGroup>
                 <Button
-                  className="flex gap-3 w-fit font-extrabold"
+                  className="flex gap-3 w-full font-extrabold"
                   variant={"ghost"}
                   onClick={() => {
                     setDialogOpen(true);
@@ -97,7 +97,7 @@ const Menu = ({ messageId, userId, currentUser, email }: messageData) => {
             {userId !== currentUser && (
               <DropdownMenuItem>
                 <Button
-                  className="flex gap-3 w-fit font-extrabold"
+                  className="flex gap-3 w-full font-extrabold"
                   variant={"ghost"}
                   onClick={() => {
                     localStorage.setItem(messageId, "true");
@@ -115,7 +115,7 @@ const Menu = ({ messageId, userId, currentUser, email }: messageData) => {
                   onClick={() => {
                     setIsReportDialogOpen(true);
                   }}
-                  className="flex gap-3 w-fit font-extrabold text-red-400 hover:text-red-400"
+                  className="flex gap-3 w-full font-extrabold text-red-400 hover:text-red-400"
                   variant={"ghost"}
                 >
                   <Report className="w-5 h-5 font-extrabold " />

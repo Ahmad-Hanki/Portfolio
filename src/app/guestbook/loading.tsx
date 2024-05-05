@@ -1,8 +1,8 @@
 
 import { Card, CardHeader } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
-import { GuestBookForm } from "./page";
 import LoadingSkeleton from "./_components/LoadingSkeleton";
+import { GuestBookForm } from "./_components/GetGuestBookForm";
 
 const GuestBookLoading = () => {
   return (

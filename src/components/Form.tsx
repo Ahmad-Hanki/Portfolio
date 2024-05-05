@@ -2,9 +2,9 @@
 import { Input } from "./ui/input";
 
 import toast from "react-hot-toast";
-import postData from "@/actions/postMessage";
 import { useRef } from "react";
 import { SubmitButton } from "./SubmitButton";
+import postMessage from "@/actions/postMessage";
 
 const Form = () => {
   const formRef = useRef<HTMLFormElement>(null);
@@ -16,7 +16,7 @@ const Form = () => {
       return;
     }
 
-    const res = await postData(formData);
+    const res = await postMessage(formData);
     if (res == 1) {
       toast.success("Message submitted successfully.");
       formRef.current?.reset();
