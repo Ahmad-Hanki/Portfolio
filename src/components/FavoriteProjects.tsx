@@ -20,7 +20,6 @@ async function getData() {
 export async function FavoriteProjects() {
   const data: ProjectsCardType[] = await getData();
 
-  console.log(data);
   return (
     <div className="py-10 grid md:grid-cols-2 gap-4 sm:gap-6 md:gap-8 lg:gap-12 grid-cols-1">
       {data.map((item) => (
