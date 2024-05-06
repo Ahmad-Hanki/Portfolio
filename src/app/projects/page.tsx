@@ -2,6 +2,8 @@ import GetProjects from "@/actions/GetProjects";
 import { ProjectsCardType } from "@/lib/types";
 import Image from "next/image";
 
+export const revalidate = 0;
+
 const ProjectsPage = async () => {
   const data: ProjectsCardType[] = await GetProjects();
 
@@ -35,8 +37,8 @@ const ProjectsPage = async () => {
                 </p>
                 <div className="mt-3 flex flex-wrap gap-2">
                   {item.tags.map((tagItem, index) => {
-                    if (tagItem == "" || tagItem == null || !tagItem)
-                      return null;
+                    // if (tagItem == "" || tagItem == null || !tagItem)
+                    //   return null;
                     return (
                       <span
                         className="inline-flex items-center rounded-md bg-primary/10 px-3 py-1.5 text-xs sm:text-sm font-medium text-primary ring-2 ring-inset ring-primary/20"
