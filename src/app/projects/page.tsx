@@ -1,4 +1,6 @@
 import GetProjects from "@/actions/GetProjects";
+import MotionA from "@/components/ui/MotionA";
+import MotionDiv from "@/components/ui/MotionDiv";
 import { ProjectsCardType } from "@/lib/types";
 import Image from "next/image";
 
@@ -7,18 +9,34 @@ export const revalidate = 0;
 const ProjectsPage = async () => {
   const data: ProjectsCardType[] = await GetProjects();
 
+  const demoVariants = {
+    animate: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.5,
+      },
+    },
+  };
+
   return (
     <section className="max-w-7xl w-full px-4 md:px-8 mx-auto">
       <h1 className="text-4xl font-semibold lg:text-5xl pt-5">Projects</h1>
       <p className="leading-7 text-muted-foreground ">Check out my projects</p>
-      <div className="py-12 grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8 lg:gap-12 ">
+
+      <MotionDiv
+        className="py-12 grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 md:gap-8 lg:gap-12 "
+        variants={demoVariants}
+        animate="animate"
+      >
         {data.map((item) => {
           return (
-            <a
+            <MotionA
+              initial={{ opacity: 0 }}
               key={item._id}
               href={item.link}
               className="group block"
               target="_blank"
+              variants={demoVariants}
             >
               <div className="relative aspect-w-16 aspect-h-12 overflow-hidden rounded-2xl">
                 <Image
@@ -50,10 +68,10 @@ const ProjectsPage = async () => {
                   })}
                 </div>
               </div>
-            </a>
+            </MotionA>
           );
         })}
-      </div>
+      </MotionDiv>
     </section>
   );
 };
