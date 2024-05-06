@@ -27,7 +27,7 @@ const Navbar = () => {
       <div className="col-span-7 md:col-span-3">
         <Link href={"/"}>
           <h1 className="text-3xl font-semibold">
-            Ahmad <span className="text-blue-500 ">Hanki</span>
+            Ahmad <span className="text-green-500 ">Hanki</span>
           </h1>
         </Link>
       </div>
