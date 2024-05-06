@@ -5,9 +5,9 @@ export async function GuestBookForm() {
     const { getUser } = getKindeServerSession();
     const user = await getUser();
   
-    if (user) {
-      return <Form />;
-    }
+    
+      return <Form user={user} />;
+    
 
 }
   

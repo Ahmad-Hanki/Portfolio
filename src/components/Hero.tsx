@@ -1,6 +1,7 @@
 import Image from "next/image";
 import me from "@/assets/Me.jpeg";
 import ConsoleText from "./AnimatedText";
+import Link from "next/link";
 
 export function Hero() {
   return (
@@ -13,8 +14,8 @@ export function Hero() {
         <ConsoleText />
         </h1>
 
-        <a
-          href="mailto:jan@alenix.de"
+        <Link
+          href={'/contact'}
           className="relative inline-block text-lg group mt-5"
         >
           <span className="relative z-10 block px-5 py-3 overflow-hidden font-medium leading-tight text-gray-800 transition-colors duration-300 ease-out border-2 border-gray-900 rounded-lg group-hover:text-white">
@@ -26,7 +27,7 @@ export function Hero() {
             className="absolute bottom-0 right-0 w-full h-12 -mb-1 -mr-1 transition-all duration-200 ease-linear bg-gray-900 rounded-lg group-hover:mb-0 group-hover:mr-0"
             data-rounded="rounded-lg"
           ></span>
-        </a>
+        </Link>
       </div>
 
       <Image

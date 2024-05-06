@@ -1,6 +1,7 @@
 import { Card } from "@/components/ui/card";
 import me from "@/assets/Me2.jpeg";
 import Image from "next/image";
+import Link from "next/link";
 export function AboutSection() {
   return (
     <div className="grid gird-cols-1 lg:grid-cols-3 gap-4 mt-10">
@@ -9,15 +10,16 @@ export function AboutSection() {
           Passionate versatile Web Developer who loves to create
         </h1>
         <p className="mt-4 text-muted-foreground lg:text-lg">
-          I am a computer engineer who works as a software engineer with a passion for creating efficient and
-          user-friendly web applications. I have experience in developing
-          scalable and maintainable web applications using modern technologies
-          and frameworks. I am passionate about creating innovative and
-          user-friendly solutions that solve real-world problems.
+          I am a computer engineer who works as a software engineer with a
+          passion for creating efficient and user-friendly web applications. I
+          have experience in developing scalable and maintainable web
+          applications using modern technologies and frameworks. I am passionate
+          about creating innovative and user-friendly solutions that solve
+          real-world problems.
         </p>
 
-        <a
-          href="mailto:jan@alenix.de"
+        <Link
+          href="/contact"
           className="relative inline-block text-lg group mt-5"
         >
           <span className="relative z-10 block px-5 py-3 overflow-hidden font-medium leading-tight text-gray-800 transition-colors duration-300 ease-out border-2 border-gray-900 rounded-lg group-hover:text-white">
@@ -29,7 +31,7 @@ export function AboutSection() {
             className="absolute bottom-0 right-0 w-full h-12 -mb-1 -mr-1 transition-all duration-200 ease-linear bg-gray-900 rounded-lg group-hover:mb-0 group-hover:mr-0"
             data-rounded="rounded-lg"
           ></span>
-        </a>
+        </Link>
       </Card>
 
       <div className="col-span-1">

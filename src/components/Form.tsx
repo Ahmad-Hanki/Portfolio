@@ -5,8 +5,15 @@ import toast from "react-hot-toast";
 import { useRef } from "react";
 import { SubmitButton } from "./SubmitButton";
 import postMessage from "@/actions/postMessage";
+import { KindeUser } from "@kinde-oss/kinde-auth-nextjs/types";
+import { RegisterLink } from "@kinde-oss/kinde-auth-nextjs/components";
+import { Button } from "./ui/button";
 
-const Form = () => {
+interface FormProps {
+  user: KindeUser | null;
+}
+
+const Form = ({ user }: FormProps) => {
   const formRef = useRef<HTMLFormElement>(null);
   const handleSubmit = async (formData: FormData) => {
     const message = formData.get("message")?.toString();
@@ -36,7 +43,12 @@ const Form = () => {
         placeholder="Your Message.."
         required
       />
-      <SubmitButton submit="Submit" submitting="Please Wait" />
+      {user && <SubmitButton submit="Submit" submitting="Please Wait" />}
+      {!user && (
+        <RegisterLink>
+          <Button type="button">Create a new account</Button>
+        </RegisterLink>
+      )}
     </form>
   );
 };

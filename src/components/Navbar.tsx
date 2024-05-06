@@ -48,9 +48,12 @@ const Navbar = () => {
         </NavigationMenu>
       </div>
       <div className="flex items-center justify-end md:col-span-3 col-span-5">
+        <Link href={'/contact'}>
         <Button className="hidden md:block">
             Contact Me
         </Button>
+        </Link>
+
         <div className="sm:hidden">
             <MobileMenu/>
         </div>
