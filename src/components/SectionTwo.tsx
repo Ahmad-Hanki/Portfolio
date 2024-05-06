@@ -16,14 +16,15 @@ import Framer from "@/assets/framer.svg";
 import Notion from "@/assets/notion.svg";
 import Youtube from "@/assets/youtube.svg";
 
-import Discord from '@/assets/discord.svg'
-import Insta from '@/assets/insta.svg'
-import Linkedin from '@/assets/linkedin.svg'
-import Pinterest from '@/assets/Pinterest.png'
-import X from '@/assets/twitter.svg'
-import Twitch from '@/assets/Twitch.png'
+import Discord from "@/assets/discord.svg";
+import Insta from "@/assets/insta.svg";
+import Linkedin from "@/assets/linkedin.svg";
+import Pinterest from "@/assets/Pinterest.png";
+import X from "@/assets/twitter.svg";
+import Twitch from "@/assets/Twitch.png";
 
 import { Button } from "./ui/button";
+import MotionDiv from "./ui/MotionDiv";
 const SectionTwo = () => {
   const icons = [
     Github,
@@ -34,6 +35,7 @@ const SectionTwo = () => {
     Framer,
     Notion,
     Pinterest,
+    Discord,
     Youtube,
   ];
 
@@ -73,8 +75,16 @@ const SectionTwo = () => {
       username: "@togya",
       link: "https://www.twitch.tv/togya",
     },
-
   ];
+
+  const demoVariants = {
+    animate: {
+      opacity: [0.3, 0.7, 1],
+      transition: {
+        staggerChildren: 0.5,
+      },
+    },
+  };
 
   return (
     <div className="grid gird-cols-1 lg:grid-cols-3 gap-4 mt-10">
@@ -91,26 +101,49 @@ const SectionTwo = () => {
             <CardTitle>Explore my stack</CardTitle>
             <CardDescription>Check out the tools i use daily</CardDescription>
           </CardHeader>
-          <CardContent className="flex flex-wrap gap-4">
-            {icons.map((item, index) => (
-              <Image key={index} src={item} alt="Icon" className="w-16 h-16" />
-            ))}
+          <CardContent>
+            <MotionDiv
+              className="flex flex-wrap gap-4"
+              variants={demoVariants}
+              initial={{ opacity: 0 }}
+              whileInView={"animate"}
+              viewport={{ amount: 0.3 }}
+            >
+              {icons.map((item, index) => (
+                <MotionDiv
+                  key={index}
+                  initial={{ opacity: 0 }}
+                  variants={demoVariants}
+                  whileHover={{
+                    scale: 1.2,
+                    rotate: Math.random() > 0.5 ? 1.2 : -1.2,
+                  }}
+                >
+                  <Image src={item} alt="Icon" className="w-16 h-16" />
+                </MotionDiv>
+              ))}
+            </MotionDiv>
           </CardContent>
         </Card>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 w-full gap-4">
           {socialMedia.map((item) => (
-            <Card
+            <MotionDiv
               key={item.id}
-              className="p-4 flex flex-col items-center sm:items-start bg-gray-100 border-none"
+              initial={{ opacity: 0, x: 90 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ amount: 0.7 }}
+              transition={{ duration: 0.9 }}
             >
-              <Image src={item.icon} alt="Icon" className="w-16 h-16" />
-              <h1 className="text-2xl font-medium pt-3">{item.name}</h1>
-              <p className="text-muted-foreground">{item.username}</p>
-              <Button className="mt-4" size="sm" asChild>
-                <a href={item.link}>Follow</a>
-              </Button>
-            </Card>
+              <Card className="p-4 flex flex-col items-center sm:items-start bg-gray-100 border-none">
+                <Image src={item.icon} alt="Icon" className="w-16 h-16" />
+                <h1 className="text-2xl font-medium pt-3">{item.name}</h1>
+                <p className="text-muted-foreground">{item.username}</p>
+                <Button className="mt-4" size="sm" asChild>
+                  <a href={item.link}>Follow</a>
+                </Button>
+              </Card>
+            </MotionDiv>
           ))}
         </div>
       </div>

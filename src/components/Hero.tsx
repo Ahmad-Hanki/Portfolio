@@ -7,7 +7,7 @@ export function Hero() {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
       <div className="col-span-1 lg:col-span-2 h-full bg-gray-100 min-h-[350px] lg:min-h-[200px] rounded-2xl p-8 space-y-8">
-        <h1 className="text-4xl lg:text-[55px] font-medium">
+        <h1 className="text-4xl lg:text-[55px] font-medium    bg-gradient-to-r from-blue-400 via-purple-400 to-red-400 bg-clip-text text-transparent py-5">
           Hey I am Ahmad Hanki 🚀
         </h1>
         <h1 className="text-4xl lg:text-6xl font-normal mt-3 ">
