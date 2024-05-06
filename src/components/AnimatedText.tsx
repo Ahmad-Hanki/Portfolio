@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 
 const ConsoleComponent: React.FC = () => {
   const [text, setText] = useState<string[]>([
+
     "I am a Developer.",
     "I am a Designer.",
     "I am a Tester.",
@@ -14,8 +15,8 @@ const ConsoleComponent: React.FC = () => {
   const [letterCount, setLetterCount] = useState<number>(1);
   const [x, setX] = useState<number>(1);
   const [waiting, setWaiting] = useState<boolean>(false);
-
   useEffect(() => {
+
     const interval1 = setInterval(() => {
       if (letterCount === 0 && !waiting) {
         setWaiting(true);
@@ -51,7 +52,9 @@ const ConsoleComponent: React.FC = () => {
     };
   }, [letterCount, text, waiting, x]);
 
+  
   const generateRandomColors = () => {
+    
     const randomColor = () => Math.floor(Math.random() * 256);
     const rgbColor = `rgb(${randomColor()}, ${randomColor()}, ${randomColor()})`;
     return [rgbColor];
