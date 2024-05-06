@@ -12,7 +12,7 @@ async function getData() {
         "imageUrl": image.asset->url
     }`;
 
-  const data = await client.fetch(query, {}, { next: { revalidate: 30 } });
+  const data = await client.fetch(query, {}, { next: { revalidate: 3600 } });
 
   return data;
 }
