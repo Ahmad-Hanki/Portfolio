@@ -31,5 +31,5 @@ export async function GET() {
   }
 //   await prisma.$disconnect();
 
-  return NextResponse.redirect("http://localhost:3000/guestbook");
+  return NextResponse.redirect("https://portfolio-nine-blue-24.vercel.app/guestbook");
 }
