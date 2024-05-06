@@ -6,7 +6,7 @@ import { useRef } from "react";
 import { SubmitButton } from "./SubmitButton";
 import postMessage from "@/actions/postMessage";
 import { KindeUser } from "@kinde-oss/kinde-auth-nextjs/types";
-import { RegisterLink } from "@kinde-oss/kinde-auth-nextjs/components";
+import { LoginLink } from "@kinde-oss/kinde-auth-nextjs/components";
 import { Button } from "./ui/button";
 
 interface FormProps {
@@ -45,9 +45,9 @@ const Form = ({ user }: FormProps) => {
       />
       {user && <SubmitButton submit="Submit" submitting="Please Wait" />}
       {!user && (
-        <RegisterLink>
-          <Button type="button">Create a new account</Button>
-        </RegisterLink>
+        <LoginLink>
+          <Button type="button">ٍSign in</Button>
+        </LoginLink>
       )}
     </form>
   );
