@@ -1,35 +1,39 @@
 import prisma from "@/lib/db";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { NextResponse } from "next/server";
-import {unstable_noStore as noStore} from 'next/cache'
+import { unstable_noStore as noStore } from "next/cache";
 export async function GET() {
   noStore();
   const { getUser } = getKindeServerSession();
   const user = await getUser();
 
   if (!user || user == null || !user.id) {
-    return NextResponse.json({ message: "Not Authorized" }, { status: 500 });
+    return NextResponse.redirect(
+      "https://portfolio-nine-blue-24.vercel.app/guestbook"
+    );
   }
 
-  let dbUser = await prisma.user.findUnique({
+  const dbUser = await prisma.user.findUnique({
     where: {
       id: user.id,
     },
   });
-//   await prisma.$disconnect();
+  //   await prisma.$disconnect();
 
   if (!dbUser) {
-    dbUser = await prisma.user.create({
+    await prisma.user.create({
       data: {
         id: user.id,
-        email: user.email!,
+        email: user.email ?? "",
         firstname: user.given_name ?? "",
         lastname: user.family_name ?? "",
         profileImage: user.picture,
       },
     });
   }
-//   await prisma.$disconnect();
+  //   await prisma.$disconnect();
 
-  return NextResponse.redirect("https://portfolio-nine-blue-24.vercel.app/guestbook");
+  return NextResponse.redirect(
+    "https://portfolio-nine-blue-24.vercel.app/guestbook"
+  );
 }
