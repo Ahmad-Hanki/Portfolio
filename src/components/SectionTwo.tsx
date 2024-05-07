@@ -22,7 +22,7 @@ import Linkedin from "@/assets/linkedin.svg";
 import Pinterest from "@/assets/Pinterest.png";
 import X from "@/assets/twitter.svg";
 import Twitch from "@/assets/Twitch.png";
-
+import Spotify from "@/assets/Spotify.png";
 import { Button } from "./ui/button";
 import MotionDiv from "./ui/MotionDiv";
 const SectionTwo = () => {
@@ -76,6 +76,14 @@ const SectionTwo = () => {
       link: "https://www.twitch.tv/togya",
     },
   ];
+
+  const spo = {
+    id: 6,
+    icon: Spotify,
+    name: "Spotify",
+    username: "@togya",
+    link: "  https://open.spotify.com/playlist/4MpHBOOl7dtPE5Dorc6ij2?si=41e29f71ef3a4582",
+  };
 
   const demoVariants = {
     animate: {
@@ -145,6 +153,23 @@ const SectionTwo = () => {
               </Card>
             </MotionDiv>
           ))}
+
+          <MotionDiv
+            key={spo.id}
+            initial={{ opacity: 0, x: 90 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ amount: 0.7 }}
+            transition={{ duration: 0.9 }}
+          >
+            <Card className="p-4 flex flex-col items-center sm:items-start bg-gray-100 border-none">
+              <Image src={spo.icon} alt="Icon" className="w-16 h-16" />
+              <h1 className="text-2xl font-medium pt-3">{spo.name}</h1>
+              <p className="text-muted-foreground">{spo.username}</p>
+              <Button className="mt-4" size="sm" asChild>
+                <a href={spo.link}>Play list</a>
+              </Button>
+            </Card>
+          </MotionDiv>
         </div>
       </div>
     </div>
