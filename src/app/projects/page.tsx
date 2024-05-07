@@ -2,9 +2,16 @@ import GetProjects from "@/actions/GetProjects";
 import MotionA from "@/components/ui/MotionA";
 import MotionDiv from "@/components/ui/MotionDiv";
 import { ProjectsCardType } from "@/lib/types";
+import { Metadata } from "next";
 import Image from "next/image";
 
 export const revalidate = 0;
+
+export const metadata: Metadata = {
+  title: "My Projects",
+  description: "Explore with me all the projects I have worked on",
+};
+
 
 const ProjectsPage = async () => {
   const data: ProjectsCardType[] = await GetProjects();

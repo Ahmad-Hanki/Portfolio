@@ -6,6 +6,14 @@ import { GuestBookForm } from "./_components/GetGuestBookForm";
 import GuestBookLoading from "./_components/DataLoading";
 import FormLoading from "./_components/FormLoading";
 import { unstable_noStore as noStore } from "next/cache";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "GuestBook",
+  description: "Leave me something that makes me happy",
+};
+
+
 const GuestBookPage = () => {
   noStore();
   return (
