@@ -12,7 +12,6 @@ export const metadata: Metadata = {
   description: "Explore with me all the projects I have worked on",
 };
 
-
 const ProjectsPage = async () => {
   const data: ProjectsCardType[] = await GetProjects();
 
@@ -36,11 +35,18 @@ const ProjectsPage = async () => {
         animate="animate"
       >
         {data.map((item) => {
+          let link;
+          if (
+            item.link ==
+            "https://vercel.com/ahmads-projects-de142161/fatma-gold"
+          ) {
+            link = "https://fatma-gold.vercel.app/";
+          } else link = item.link;
           return (
             <MotionA
               initial={{ opacity: 0 }}
               key={item._id}
-              href={item.link}
+              href={link}
               className="group block"
               target="_blank"
               variants={demoVariants}
