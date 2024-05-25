@@ -35,18 +35,11 @@ const ProjectsPage = async () => {
         animate="animate"
       >
         {data.map((item) => {
-          let link;
-          if (
-            item.link ==
-            "https://vercel.com/ahmads-projects-de142161/fatma-gold"
-          ) {
-            link = "https://fatma-gold.vercel.app/";
-          } else link = item.link;
           return (
             <MotionA
               initial={{ opacity: 0 }}
               key={item._id}
-              href={link}
+              href={item.link}
               className="group block"
               target="_blank"
               variants={demoVariants}
