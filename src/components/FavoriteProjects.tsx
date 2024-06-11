@@ -3,7 +3,7 @@ import { ProjectsCardType } from "@/lib/types";
 import { client } from "../lib/sanity";
 
 async function getData() {
-  const query = `*[_type == 'project' && (link == 'https://metaduzey-user.vercel.app/' || link == 'https://www.chikiwiki.net')] | order(_createdAt desc) [0...2] {
+  const query = `*[_type == 'project' && (link == 'https://metaduzey-user.vercel.app/' || link == 'https://www.uza.studio')] | order(_createdAt desc) [0...2] {
         title,
         _id,
         link,
