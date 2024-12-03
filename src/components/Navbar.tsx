@@ -15,7 +15,7 @@ import { useEffect, useState } from "react";
 
 export const navigationItems = [
   { name: "Home", href: "/" },
-  { name: "GuestBook", href: "/guestbook" },
+  // { name: "GuestBook", href: "/guestbook" },
   { name: "Projects", href: "/projects" },
 ];
 
